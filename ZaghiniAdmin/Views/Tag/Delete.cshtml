@@ -1,0 +1,38 @@
+﻿@model ZaghiniAdmin.Models.tags
+
+@{
+    ViewBag.Title = "Delete Tag";
+}
+
+<div class="z_breadcumb">
+    <a href="@Url.Action("Index","Tag")">Tags</a><i class="fa fa-angle-double-right fa-fw"></i><a href="#">Delete Tag</a>
+</div>
+
+<div class="row">
+    <div class="z_panel">
+        <div class="z_panel-title">
+            <h4>Delete Tag</h4>
+            <div class="clearfix"></div>
+        </div>
+        <div class="z_panel-content">
+            <div>
+                <dl class="dl-horizontal">
+                    <dt> @Html.DisplayName("Tag Name") </dt>
+                    <dd> @Html.DisplayFor(model => model.description) </dd>
+                </dl>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Delete" class="btn btn-default" />
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
+</div>
+
+

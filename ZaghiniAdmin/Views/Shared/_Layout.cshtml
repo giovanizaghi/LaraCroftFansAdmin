@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    @if (Session["logged"] == null)
+    {
+        Response.Redirect(Url.Action("Index", "Login"));
+    }
+
+    @{
+        string urlProfile = "";
+        string imageUser = "../../Images/Users/image" + Session["userId"].ToString() + ".jpg";
+        string userType = Session["userType"] != null ? Session["userType"].ToString() : "";
+
+        if (Session["userId"] != null)
+        {
+            urlProfile = Url.Action("Profile", "Home") + "/" + Session["userId"].ToString();
+        }
+    }
+
+    <div class="nav-top">
+        <div class="col-md-12">
+            <div class="col-md-6 logo text-left"><a href="@Url.Action("Index","Home")">LARA CROFT <font color="#c72727">FANS</font></a></div>
+            <div id="userMenu" class="col-md-6 top-menu text-right">
+                <a id="UserButton">
+                    <img class="top-picture" src="@imageUser" />
+                    @Session["userFirstName"].ToString()
+                </a>
+                <i class="fa fa-angle-down"></i>
+                <ul class="user-menu">
+                    <li><a href="@urlProfile"><i class="fa fa-user fa-fw"></i> Profile</a></li>
+                    <li><a href="@Url.Action("Index","Login")"><i class="fa fa-power-off fa-fw"></i>Log out</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="nav-left">
+        <img src="@imageUser" />
+        <span><a href="@urlProfile">@Session["userName"].ToString()</a></span>
+        <label>General</label>
+        <ul>
+            <li>
+                <a href="@Url.Action("Index","Home")"><i class="fa fa-home fa-fw"></i> Dashboard</a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="toggleSubmenu(this)">
+                    <i class="fa fa-file-text-o fa-fw"></i> Posts <i class="fa fa-chevron-down fa-fw" style="font-size: 10px;"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a href="@Url.Action("Index","Post")">All Posts</a></li>
+                    <li><a href="@Url.Action("Index","Tag")">Tags</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="@Url.Action("Index","sections")">
+                    <i class="fa fa-list fa-fw"></i> Sections
+                </a>            
+            </li>
+
+            @if (userType == "Administrator")
+            {
+                <li>
+                    <a href="javascript:void(0);" onclick="toggleSubmenu(this)">
+                        <i class="fa fa-user fa-fw"></i> Users <i class="fa fa-chevron-down fa-fw" style="font-size: 10px;"></i>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="@Url.Action("Index","User")">Users</a></li>
+                        <li><a href="@Url.Action("Index","Usertype")">User Types</a></li>
+                    </ul>
+                </li>
+            }
+        </ul>
+    </div>
+
+    <div class="content">
+        @RenderBody()
+    </div>
+
+    <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=cp3nn1dzi4m2znzfavv2jk3dcnpg2cpq98ptrik0thspzktn"></script>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

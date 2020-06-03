@@ -1,0 +1,51 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/Login.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery-ui.min.js"></script>
+
+    <title>Lara Croft Fans Admin</title>
+</head>
+<body>
+    <div class="outer">
+        <div class="middle">
+            <div class="inner">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="Logo">LARA CROFT <font color="#c72727">FANS</font></div>
+
+                    <div style="width: 100%;">
+                        <div class="panel-login">
+                            <center>
+                                @if (ViewBag.Error != null)
+                                {
+                                    <span>@ViewBag.Error</span>
+                                }
+                                <input id="txtLogin" name="login" type="text" class="form-login" placeholder="User" required />
+                                <input id="txtPassword" name="password" type="password" class="form-login" placeholder="Password" required />
+                                <input type="submit" class="form-btn" value="Login" />
+                            </center>
+                        </div>
+
+                    </div>
+                }
+            </div>
+        </div>
+        <footer>
+            <p>That administrator system is developed by Giovani Zaghi, an independent project that was maded by the ASP.NET technology using <a target="_blank" href="http://visualstudio.microsoft.com/pt-br/vs/community/">Visual Studio Comunity</a> from Microsoft ® All rights reserved</p>
+            <p>This page is only for administrators of Lara Croft Fans website, if you are not an administrator, please go to <a href="www.laracroftfans.com">LaraCroftFans.com</a></p>
+        </footer>
+    </div>
+
+</body>
+</html>

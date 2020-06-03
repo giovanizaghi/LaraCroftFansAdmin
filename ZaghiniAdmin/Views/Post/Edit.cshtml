@@ -1,0 +1,95 @@
+﻿@model ZaghiniAdmin.Models.posts
+
+@{
+    ViewBag.Title = "Edit Post";
+    string imageUrl = "http://admin.laracroftfans.com/Images/Posts/" + Model.image;
+}
+<div class="z_breadcumb">
+    <a href="@Url.Action("Index","Post")">Posts</a><i class="fa fa-angle-double-right fa-fw"></i><a href="#">Edit post</a>
+</div>
+<div class="row">
+    <div class="z_panel">
+        <div class="z_panel-title">
+            <h4>Edit Post</h4>
+            <div class="clearfix"></div>
+        </div>
+        <div class="z_panel-content">
+            @using (Html.BeginForm())
+            {
+                <input type="hidden" name="iduser" id="iduser" value="@Model.iduser" />
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        @Html.Label("Title", htmlAttributes: new { @class = "control-label col-md-12" })
+                        @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <label class="col-md-12">Banner Image</label>
+                        <input type="file" name="image" id="txtUploadFile" value="@Model.image" accept="image/x-png,image/gif,image/jpeg" />
+                        <div id="bannerImage" class="image-prev" style="background-image: url('@imageUrl');"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <textarea id="formattedText" name="content" style="height: 350px;">
+                                @Html.DisplayTextFor(model => model.content)
+                            </textarea>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label class="col-md-12">Date</label>
+                        <input class="form-control" type="datetime-local" value="@Model.postdate.ToString("yyyy-MM-ddThh:mm")" name="postdate" id="postdate" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-2">
+                        <label class="col-md-12" for="idtag">Category</label>
+                        @Html.DropDownList("idtag", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <span class="default-label">Save As Draft</span>
+                    </div>
+                    <div class="col-lg-2">
+                        <label class="switch">
+                            <input type="checkbox" name="active" id="active" @ViewBag.draft/>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <span class="default-label">Only registered visitors can read</span>
+                    </div>
+                    <div class="col-lg-2">
+                        <label class="switch">
+                            <input type="checkbox" name="onlyregistercanread" id="onlyregistercanread" @ViewBag.register/>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="row" style="text-align: right;">
+                    <div class="col-md-10">
+
+                    </div>
+                    <div class="col-md-1">
+                        <a href="@Url.Action("Index","Post")" class="btn btn-danger">Cancel</a>
+                    </div>
+                    <div class="col-md-1">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

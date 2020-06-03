@@ -1,0 +1,66 @@
+﻿@model ZaghiniAdmin.Models.users
+
+@{
+    ViewBag.Title = "Edit Profile";
+
+    string imageUser = "../../Images/Users/image" + Session["userId"].ToString() + ".jpg";
+}
+
+<h2>User Profile</h2>
+
+<div class="z_panel clear-color">
+    <div class="z_panel-title">
+        <h4>Edit Your Profile</h4>
+        <div class="clearfix"></div>
+    </div>
+    <div class="z_panel-content">
+        <div class="row">
+            <div class="profile-details col-md-4">
+                <img src="@imageUser" />
+                <h1>@Html.DisplayTextFor(model => model.name)</h1>
+                <h2><i class="fa fa-briefcase fa-fw"></i> @Html.DisplayTextFor(model => model.usertype.description)</h2>
+            </div>
+
+            <div class="col-md-8">
+                @*<h1>Published Content</h1>
+                <table class="table table-responsive table-bordered table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(var x in Model)
+                        {
+
+                        }
+                    </tbody>
+                </table>*@
+
+                @*<div class="change-password">
+                    <h1>Change Password</h1>
+                    <div class="col-md-12">
+                        <label class="col-md-12">Current Password</label>
+                        <input name="currentpassword" class="form-control col-md-12" type="password" placeholder="Current Password" />
+                    </div>
+                    <div class="col-md-12">
+                        <label class="col-md-12">New Password</label>
+                        <input name="newpass" class="form-control col-md-12" type="password" placeholder="New Password" />
+                    </div>
+
+                    <div class="col-md-12">
+                        <label class="col-md-12">Repeat Password</label>
+                        <input name="newpassrepeat" class="form-control col-md-12" type="password" placeholder="Repeat Password" />
+                    </div>
+                </div>*@
+                <div class="change-image">
+                    <h1>Change Profile Picture</h1>
+                    <input type="file" name="Image" id="txtUploadFileProfile" accept="image/x-png,image/gif,image/jpeg" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

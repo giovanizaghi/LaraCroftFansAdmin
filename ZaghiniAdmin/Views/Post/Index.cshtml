@@ -1,0 +1,66 @@
+﻿@model IEnumerable<ZaghiniAdmin.Models.posts>
+
+@{
+    ViewBag.Title = "All Posts";
+    
+    string draftIcon = "";
+    string membersIcon = "";
+}
+
+<div class="z_breadcumb">
+    <a href="@Url.Action("Index","Post")">Posts</a>
+</div>
+
+<div class="z_panel">
+    <div class="z_panel-title">
+        <h4>All Posts</h4>
+        <div class="clearfix"></div>
+    </div>
+    <div class="z_panel-content">
+        <div class="general-actions">
+            <a href="@Url.Action("Create","Post")" class="btn btn-primary"><i class="fa fa-plus"></i> New Post</a>
+        </div>
+
+
+        <table class="table table-hover table-striped">
+            <tr>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Tag</th>
+                <th>Author</th>
+                <th>Visibility</th>
+                <th>Actions</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                draftIcon = item.active ? " <i class='fa fa-eye fa-fw' title='Publised'></i>" : "<i class='fa fa-eye-slash fa-fw' title='Draft'></i>";
+                membersIcon = item.onlyregistercanread ? "<i class='fa fa-user fa-fw' title='Only members can read'></i>" : "";
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.postdate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tags.description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.users.name)
+                    </td>
+                    <td>
+                        @Html.Raw(draftIcon)
+                        @Html.Raw(membersIcon)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+    </div>
+</div>

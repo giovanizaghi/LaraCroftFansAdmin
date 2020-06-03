@@ -1,0 +1,35 @@
+﻿@model ZaghiniAdmin.Models.users
+
+@{
+    ViewBag.Title = "Delete User";
+}
+
+<div class="z_breadcumb">
+    <a href="@Url.Action("Index","User")">Users</a><i class="fa fa-angle-double-right fa-fw"></i><a href="#">Delete User</a>
+</div>
+
+<div class="row">
+    <div class="z_panel">
+        <div class="z_panel-title">
+            <h4>Delete Tag</h4>
+            <div class="clearfix"></div>
+        </div>
+        <div class="z_panel-content">
+                <dl class="dl-horizontal">
+                    <dt>@Html.DisplayName("Nome")</dt>
+                    <dd>@Html.DisplayFor(model => model.name)</dd>
+                    <dt>@Html.DisplayName("Type")</dt>
+                    <dd>@Html.DisplayFor(model => model.usertype.description)</dd>
+                </dl>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Delete" class="btn btn-danger" />
+                    </div>
+                }
+        </div>
+    </div>
+

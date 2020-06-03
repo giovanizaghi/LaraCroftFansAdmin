@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Lara Croft Fans Admin";
+
+    string urlProfile = Url.Action("Profile", "Home") + "/" + Session["userId"].ToString();
+}
+<div class="row">
+    <div class="col-md-4">
+        <div class="z_panel">
+            <div class="z_panel-title">
+                <h4>Shortcuts</h4>
+                <div class="clearfix"></div>
+            </div>
+            <div class="z_panel-content">
+                <a href="@Url.Action("Create","Post")" class="btn btn-default"><i class="fa fa-file fa-fw"></i>New post</a>
+                <a href="@Url.Action("Index","Tag")" class="btn btn-default"><i class="fa fa-tags fa-fw"></i>Tags</a>
+                <a href="@urlProfile" class="btn btn-default"><i class="fa fa-user fa-fw"></i>My Profile</a>
+                <a href="@Url.Action("Index","sections")" class="btn btn-default"><i class="fa fa-list fa-fw"></i>Sections</a>
+            </div>
+        </div>
+    </div>
+</div>

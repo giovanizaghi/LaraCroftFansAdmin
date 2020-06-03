@@ -1,0 +1,46 @@
+﻿@model IEnumerable<ZaghiniAdmin.Models.section>
+
+@{
+    ViewBag.Title = "Sections";
+}
+
+<div class="z_breadcumb">
+    <a href="@Url.Action("Index","section")">Section</a>
+</div>
+
+<div class="z_panel">
+    <div class="z_panel-title">
+        <h4>All Sections</h4>
+        <div class="clearfix"></div>
+    </div>
+    <div class="z_panel-content">
+        <div class="general-actions">
+            <a href="@Url.Action("Create","sections")" class="btn btn-primary"><i class="fa fa-plus"></i> New Section</a>
+        </div>
+        <table class="table table-responsive table-bordered table-striped table-hover">
+            <tr>
+                <th>
+                    Section Name
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.description)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
